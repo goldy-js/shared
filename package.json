@@ -1,6 +1,6 @@
 {
   "name": "@goldyjs/shared",
-  "version": "1.1.0",
+  "version": "1.0.0",
   "LICENSE": "MIT",
   "description": "Useful common abstractions",
   "main": "lib/index.js",
@@ -15,15 +15,15 @@
     "email": "goldy@adamgoldman.me"
   },
   "scripts": {
-    "tsc": "tsc",
     "type-check": "tsc --noEmit",
     "type-check:watch": "npm run type-check -- --watch",
     "lint": "eslint src",
     "clean": "rimraf lib",
     "prebuild": "npm run clean",
     "build:watch": "nodemon --watch package.json --watch src --exec \"npm run build\"",
-    "build": "npm run build:ts",
-    "build:ts": "babel src -d lib --source-maps --extensions '.ts'",
+    "build": "npm run build:js && npm run build:types",
+    "build:js": "babel src -d lib --source-maps --extensions '.ts'",
+    "build:types": "tsc --emitDeclarationOnly",
     "pub": "npm publish --access public",
     "test": "jest --runInBand",
     "t:w": "npm run test:w",
